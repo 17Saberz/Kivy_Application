@@ -1,4 +1,9 @@
-
+import random
+from kivy.properties import ObjectProperty
+from kivy.uix.widget import Widget
+from io import BytesIO
+from PIL import Image as PilImage
+from kivy.core.image import Image as CoreImage
 
 card_width = 195
 card_height = 303
@@ -38,4 +43,33 @@ class Card(Widget):
         if visible:
             self.texture = images[self.suit][Card.index[self.rank]]
         else:
-            self.texture = images['X']  # card back
+            self.texture = images['X']
+
+def extract_texture(image):
+    """
+    Load image into bytes buffer, convert to texture data
+    """
+    data = BytesIO()
+    image.save(data, format='png')
+    data.seek(0)
+    return CoreImage(BytesIO(data.read()), ext='png').texture
+
+
+def load_cards():
+    global images
+    card_back = extract_texture(PilImage.open('D:/Work AI/AI/Boat Sensei/qivy/kivy_application/asserts/card_back.png'))
+    images['X'] = card_back
+
+    full_deck = PilImage.open('D:/Work AI/AI/Boat Sensei/qivy/kivy_application/asserts/decklist.png')
+
+    for row in range(4):
+        textures = []
+        suit = list(images.keys())[row]
+
+        for col in range(13):
+            spacing = (col * card_width, row * card_height, (col + 1) * card_width, (row + 1) * card_height)
+            cropped = full_deck.crop(spacing) 
+            texture = extract_texture(cropped)
+            textures.append(texture)
+
+        images[suit] = textures
