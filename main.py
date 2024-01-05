@@ -79,7 +79,7 @@ class Hand:
 
     def __init__(self):
         self.cards = []
-        
+
     def __str__(self):
         # used to check the dealer's hand
         out_str = "Hand contains:"
@@ -120,3 +120,19 @@ class Hand:
                 return value + 10
             else:
                 return value
+            
+class Deck:
+    suits = ['C', 'S', 'H', 'D']  # club, spade, heart, diamond
+    ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K']
+
+    def __init__(self):
+        self.cards = [Card(suit=suit, rank=rank, visible=False, opacity=0)
+                    for suit in Deck.suits for rank in Deck.ranks]
+
+    def shuffle(self):
+        random.shuffle(self.cards)
+
+    def deal(self):
+        card = random.choice(self.cards)
+        self.cards.remove(card)
+        return card
