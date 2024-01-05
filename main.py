@@ -79,3 +79,44 @@ class Hand:
 
     def __init__(self):
         self.cards = []
+        
+    def __str__(self):
+        # used to check the dealer's hand
+        out_str = "Hand contains:"
+        for card in self.cards:
+            out_str += (' ' + card.suit + card.rank)
+        return out_str
+
+    def __getitem__(self, idx):
+        return self.cards[idx]
+
+    def add_card(self, card):
+        self.cards.append(card)
+
+    def count(self):
+        visible_count = [1 if card.visible else 0 for card in self.cards]
+        return sum(visible_count)
+
+    def has_ace(self):
+        has_ace = False
+        for card in self.cards:
+            if card.visible and card.rank == 'A':
+                has_ace = True
+                break
+        return has_ace
+
+    def get_value(self):
+        value = 0
+        for card in self.cards:
+            if card.visible:
+                value += Hand.values[card.rank]
+
+        # if the hand has an ace, add 10 to self.point unless it would bust
+        # any hand can only have one ace valued as 11, as 11 * 2 would bust
+        if not self.has_ace():
+            return value
+        else:
+            if value + 10 <= 21:
+                return value + 10
+            else:
+                return value
