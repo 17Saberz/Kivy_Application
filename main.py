@@ -141,3 +141,53 @@ class Deck:
 class Table(GridLayout):
     score = NumericProperty(0)
     outcome = StringProperty('')
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.rows = 2
+        self.cols = 8
+
+        self.outcome = ''
+        self.score = 0
+        self.in_play = False  # disable buttons if in play
+
+        self.deck = None
+        self.dealer_hand = None
+        self.player_hand = None
+
+        self.deal()
+
+    def deal(self):
+        self.deck = Deck()
+        self.deck.shuffle()
+        self.dealer_hand = Hand()
+        self.player_hand = Hand()
+
+        self.canvas.clear()
+        self.clear_widgets()
+
+        # deal cards to the player and dealer in turn
+        for col in range(self.cols):
+            self.player_hand.add_card(self.deck.deal())  # invisible + transparent card
+            self.dealer_hand.add_card(self.deck.deal())  # invisible + transparent card
+
+        # fill out the table row by row (dealer on top)
+        for col in range(self.cols):
+            self.add_widget(self.dealer_hand[col])
+        for col in range(self.cols):
+            self.add_widget(self.player_hand[col])
+
+        # dealer's cards, the second one is not visible
+        self.dealer_hand[0].set_visible(True)
+
+        # player's cards, both are visible
+        self.player_hand[0].set_visible(True)
+        self.player_hand[1].set_visible(True)
+
+        # display 2 cards on the table
+        for i in range(2):
+            self.dealer_hand[i].opacity = 1
+            self.player_hand[i].opacity = 1
+
+        self.outcome = "Hit or stand?"
+        self.in_play = True
