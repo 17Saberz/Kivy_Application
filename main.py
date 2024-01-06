@@ -191,3 +191,14 @@ class Table(GridLayout):
 
         self.outcome = "Hit or stand?"
         self.in_play = True
+
+    def hit(self):
+        if self.in_play:
+            nxt = self.player_hand.count()
+            self.player_hand[nxt].set_visible(True)
+            self.player_hand[nxt].opacity = 1
+
+            if self.player_hand.get_value() > 21:
+                self.outcome = "You have busted, new deal?"
+                self.in_play = False
+                self.score -= 1
