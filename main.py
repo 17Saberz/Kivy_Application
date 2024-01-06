@@ -1,9 +1,10 @@
 import random
-from kivy.properties import ObjectProperty
+from kivy.properties import NumericProperty, ObjectProperty, StringProperty
 from kivy.uix.widget import Widget
 from io import BytesIO
 from PIL import Image as PilImage
 from kivy.core.image import Image as CoreImage
+from kivy.uix.gridlayout import GridLayout
 
 card_width = 195
 card_height = 303
@@ -136,3 +137,7 @@ class Deck:
         card = random.choice(self.cards)
         self.cards.remove(card)
         return card
+    
+class Table(GridLayout):
+    score = NumericProperty(0)
+    outcome = StringProperty('')
