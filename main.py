@@ -5,6 +5,8 @@ from io import BytesIO
 from PIL import Image as PilImage
 from kivy.core.image import Image as CoreImage
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.boxlayout import BoxLayout
+from kivymd.app import MDApp
 
 card_width = 195
 card_height = 303
@@ -202,3 +204,16 @@ class Table(GridLayout):
                 self.outcome = "You have busted, new deal?"
                 self.in_play = False
                 self.score -= 1
+
+class Root(BoxLayout):
+    ...
+
+class Game(MDApp):
+    title = 'Blackjack'
+
+    def build(self):
+        self.theme_cls.primary_palette = "LightBlue"
+        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.primary_hue = "600"
+        root = Root()
+        return root
