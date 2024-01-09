@@ -1,3 +1,6 @@
+#: import card_width __main__.card_width
+#: import card_height __main__.card_height
+
 <Card>:
     canvas:
         Rectangle:
@@ -12,4 +15,16 @@
         Rectangle:
             pos: self.pos
             size: self.size
-            source: "D:/Work AI/AI/Boat Sensei/qivy/TEST/asserts/back.jpg"
+            source: "D:/Work AI/AI/Boat Sensei/qivy/kivy_application/asserts/back.jpg"
+
+    BoxLayout:
+        orientation: 'horizontal'
+        padding: 0, 20, 0, 0  # left-top-right-bottom
+        spacing: 30
+
+        Image:
+            source: 'D:/Work AI/AI/Boat Sensei/qivy/kivy_application/asserts/Casino_girl.png'
+
+        Label:
+            text: "Welcome to Casino!"
+            font_size: 35
