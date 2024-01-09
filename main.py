@@ -7,6 +7,8 @@ from kivy.core.image import Image as CoreImage
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.app import MDApp
+from kivy.lang import Builder
+from kivy.utils import get_color_from_hex
 
 card_width = 195
 card_height = 303
@@ -217,3 +219,18 @@ class Game(MDApp):
         self.theme_cls.primary_hue = "600"
         root = Root()
         return root
+    
+if __name__ == '__main__':
+    # load card sprite
+    load_cards()
+
+    from kivy.config import Config
+    Config.set('input', 'mouse', 'mouse, disable_multitouch')  # must be called before importing Window
+
+    from kivy.core.window import Window
+    Window.size = (500, 500)
+    Window.clearcolor = get_color_from_hex('#BCADA1')
+
+    Builder.load_file('blackjack.kv')
+
+    Game().run()
