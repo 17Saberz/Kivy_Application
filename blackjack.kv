@@ -29,12 +29,24 @@
             text: "Welcome to Casino!"
             font_size: 35
 
-    Label:
-        text: 'Score: ' + str(table.score)
-        size_hint: (1, 0.2)
+    # Label:
+    #     text: 'Score: ' + str(table.score)
+    #     size_hint: (1, 0.2)
 
-    Label:
-        text: table.outcome
-        font_size: 30
+    # Label:
+    #     text: table.outcome
+    #     font_size: 30
+    #     size_hint: (1, 0.3)
+    #     color: 0, 0, 0, 1
+
+    BoxLayout:
+        orientation: 'horizontal'
+        padding: 240, 0, 0, 0  # left-top-right-bottom
+        spacing: 30
         size_hint: (1, 0.3)
-        color: 0, 0, 0, 1
+
+        canvas:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'D:/Work AI/AI/Boat Sensei/qivy/kivy_application/asserts/wood_border.jpg'
