@@ -62,3 +62,14 @@
         MyButton:
             text: 'Stand'
             on_press: table.stand()
+
+    FloatLayout:
+        size_hint: (1, 2)
+
+        canvas:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'D:/Work AI/AI/Boat Sensei/qivy/kivy_application/asserts/Table.jpg'
