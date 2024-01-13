@@ -83,3 +83,24 @@
             text: 'PLAYER'
             color: 0, 0, 0, 1
             pos_hint: {'center_x': 0.1, 'center_y': 1/4}
+
+        GridLayout:
+            cols: 7
+            pos_hint: {'x': 0.2, 'center_y': 0.5}
+
+            canvas:
+                Line:
+                    points: [0, self.size[1]/2, self.size[0], self.size[1]/2]
+                    width: 2
+
+        Table:
+            id: table
+            rows: self.rows
+            cols: self.cols
+            spacing: (12, 25)
+            padding: (12, 12, 12, 0)
+            col_default_width: card_width/1.75
+            row_default_height: card_height/1.75
+            col_force_default: True
+            row_force_default: True
+            pos_hint: {'x': 0.2, 'center_y': 0.5}
