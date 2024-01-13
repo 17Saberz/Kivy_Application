@@ -9,6 +9,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.utils import get_color_from_hex
+from kivy.core.text import LabelBase
 
 card_width = 195
 card_height = 303
@@ -253,5 +254,8 @@ if __name__ == '__main__':
     Window.clearcolor = get_color_from_hex('#BCADA1')
 
     Builder.load_file('blackjack.kv')
+    LabelBase.register(name='perpeta', fn_regular='D:/Work AI/AI/Boat Sensei/qivy/kivy_application/asserts/perpeta.ttf')
+    LabelBase.register(name='OpenSans', fn_regular='D:/Work AI/AI/Boat Sensei/qivy/kivy_application/asserts/OpenSans-Regular.ttf')
+
 
     Game().run()

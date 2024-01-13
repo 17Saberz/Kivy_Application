@@ -1,6 +1,19 @@
 #: import card_width __main__.card_width
 #: import card_height __main__.card_height
 
+<Label>:
+    font_name: 'perpeta'  # perpeta
+    font_size: 25
+    color: 1, 1, 1, 1
+    markup: True
+
+<MyButton@MDRectangleFlatButton>:
+    font_name: 'OpenSans'
+    font_size: 15
+    pos_hint: {"center_y": 0.5}
+    text_color: 0, 0, 0, 1
+    md_bg_color: 0/255, 138/255, 230/255, 1
+
 <Card>:
     canvas:
         Rectangle:
@@ -29,15 +42,15 @@
             text: "Welcome to Casino!"
             font_size: 35
 
-    # Label:
-    #     text: 'Score: ' + str(table.score)
-    #     size_hint: (1, 0.2)
+    Label:
+        text: 'Score: ' + str(table.score)
+        size_hint: (1, 0.2)
 
-    # Label:
-    #     text: table.outcome
-    #     font_size: 30
-    #     size_hint: (1, 0.3)
-    #     color: 0, 0, 0, 1
+    Label:
+        text: table.outcome
+        font_size: 30
+        size_hint: (1, 0.3)
+        color: 0, 0, 0, 1
 
     BoxLayout:
         orientation: 'horizontal'
