@@ -226,6 +226,8 @@ class Table(GridLayout):
                     self.outcome = "You win! New deal?"
                     self.score += 1
 
+            self.in_play = False
+
 class Root(BoxLayout):
     ...
 
