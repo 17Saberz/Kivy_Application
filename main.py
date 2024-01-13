@@ -207,6 +207,25 @@ class Table(GridLayout):
                 self.in_play = False
                 self.score -= 1
 
+    def stand(self):
+        if self.in_play:
+            # hit dealer until his hand has value 17 or more
+            while self.dealer_hand.get_value() < 17:
+                nxt = self.dealer_hand.count()
+                self.dealer_hand[nxt].set_visible(True)
+                self.dealer_hand[nxt].opacity = 1
+
+            if self.dealer_hand.get_value() > 21:
+                self.outcome = "Dealer has busted, you win! New deal?"
+                self.score += 1
+            else:
+                if self.player_hand.get_value() <= self.dealer_hand.get_value():
+                    self.outcome = "You lose, new deal?"
+                    self.score -= 1
+                else:
+                    self.outcome = "You win! New deal?"
+                    self.score += 1
+
 class Root(BoxLayout):
     ...
 
